@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "987189433509",
+    "project_id": "meditation-32133",
+    "storage_bucket": "meditation-32133.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987189433509:android:992c287b1308d1ea30e94c",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987189433509-74loqjd686g72tn13b3bn5t1snvt5vso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2SE7REp6XjX3iRsL7FB0dA0ReEZYCz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987189433509-74loqjd686g72tn13b3bn5t1snvt5vso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987189433509:android:0bfd1939401da20830e94c",
+        "android_client_info": {
+          "package_name": "com.example.meditation_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987189433509-pmp0bj3k0mi2kthj2sr2na3v1t9c0436.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meditation_app",
+            "certificate_hash": "4efb8f107a4a8096d0ad848572106f4bc514305c"
+          }
+        },
+        {
+          "client_id": "987189433509-74loqjd686g72tn13b3bn5t1snvt5vso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2SE7REp6XjX3iRsL7FB0dA0ReEZYCz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987189433509-74loqjd686g72tn13b3bn5t1snvt5vso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987189433509:android:fccb48d58c70573230e94c",
+        "android_client_info": {
+          "package_name": "com.mummy.express"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987189433509-74loqjd686g72tn13b3bn5t1snvt5vso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2SE7REp6XjX3iRsL7FB0dA0ReEZYCz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987189433509-74loqjd686g72tn13b3bn5t1snvt5vso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
