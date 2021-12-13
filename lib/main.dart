@@ -1,10 +1,12 @@
+import 'package:e_commerce_app/screens/profile_screen.dart';
 import 'package:e_commerce_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -13,26 +15,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FutureBuilder(
-        // Initialize FlutterFire:
-        future: _initialization,
-        builder: (context, snapshot) {
-          // Check for errors
-          if (snapshot.hasError) {
-            return const Center(child: Text("App not Connected"));
-          }
+      home: SplashScreen(),
 
-          // Once complete, show your application
-          if (snapshot.connectionState == ConnectionState.done) {
-            return  const SplashScreen();
-          }
-
-          // Otherwise, show something whilst waiting for initialization to complete
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+      // FutureBuilder(
+      //   // Initialize FlutterFire:
+      //   future: _initialization,
+      //   builder: (context, snapshot) {
+      //     // Check for errors
+      //     if (snapshot.hasError) {
+      //       return const Center(child: Text("App not Connected"));
+      //     }
+      //
+      //     // Once complete, show your application
+      //     if (snapshot.connectionState == ConnectionState.done) {
+      //       return  const SplashScreen();
+      //     }
+      //
+      //     // Otherwise, show something whilst waiting for initialization to complete
+      //     return const Center(child: CircularProgressIndicator());
+      //   },
+      // ),
     );
   }
 }

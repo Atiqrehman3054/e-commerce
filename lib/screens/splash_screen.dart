@@ -14,64 +14,66 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPagebackgroundcolor,
-      body: Column(
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Image.asset(
-                "assets/images/Frame.png",
-                fit: BoxFit.cover,
-              ),
-              Container(
-                transform: Matrix4.translationValues(0, 40, 0),
-                child: SvgPicture.asset("assets/images/Group.svg"),
-              ),
-            ],
-          ),
-          fixsize,
-          fixsize,
-          fixsize,
-          fixsize,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.center,
               children: [
-                AppButton(
-                  name: "SignUp",
-                  onpressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => SignupScreen()));
-                  },
+                Image.asset(
+                  "assets/images/Frame.png",
+                  fit: BoxFit.cover,
                 ),
-                fixsize,
-                fixsize,
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "ALREADY HAVE AN ACCOUNT?",
-                      style: TextStyle(color: kLightText),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => LoginScreen()));
-                      },
-                      child: const Text(
-                        "  LOG IN",
-                        style: TextStyle(color: kBackgroundColor),
-                      ),
-                    )
-                  ],
+                Container(
+                  transform: Matrix4.translationValues(0, 40, 0),
+                  child: SvgPicture.asset("assets/images/Group.svg"),
                 ),
               ],
             ),
-          )
-        ],
+            fixsize,
+            fixsize,
+            fixsize,
+            fixsize,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AppButton(
+                    name: "SignUp",
+                    onpressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => SignupScreen()));
+                    },
+                  ),
+                  fixsize,
+                  fixsize,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "ALREADY HAVE AN ACCOUNT?",
+                        style: TextStyle(color: kLightText),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => LoginScreen()));
+                        },
+                        child: const Text(
+                          "  LOG IN",
+                          style: TextStyle(color: kBackgroundColor),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

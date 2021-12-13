@@ -1,10 +1,16 @@
 import 'dart:ui';
+
 import 'package:e_commerce_app/screens/detailscreen.dart';
+import 'package:e_commerce_app/screens/productScreen/product.dart';
+import 'package:e_commerce_app/screens/productScreen/show_product.dart';
 import 'package:e_commerce_app/widgets/custom_listtile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyCart extends StatefulWidget {
-  MyCart({Key? key}) : super(key: key);
+  MyCart({required this.add, Key? key});
+
+  bool? add;
 
   @override
   _MyCartState createState() => _MyCartState();
@@ -36,9 +42,20 @@ class _MyCartState extends State<MyCart> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(const AddProduct());
+            },
             icon: const Icon(
-              Icons.delete,
+              Icons.add,
+              color: Colors.black54,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Get.to(ShowProduct());
+            },
+            icon: const Icon(
+              Icons.shopping_bag,
               color: Colors.black54,
             ),
           ),
@@ -60,7 +77,7 @@ class _MyCartState extends State<MyCart> {
                 height: 400,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: const[
+                    children: const [
                       CustomListTile(),
                       CustomListTile(),
                       CustomListTile(),
@@ -73,7 +90,9 @@ class _MyCartState extends State<MyCart> {
               ),
             ),
           ),
-          Expanded(
+          Visibility(
+            visible: widget.add == true ? true : false,
+            child: Expanded(
               flex: 1,
               child: Container(
                 color: Colors.grey[200],
@@ -86,12 +105,12 @@ class _MyCartState extends State<MyCart> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Row(
-                            children:const [
+                            children: const [
                               Text("SubTotal:"),
                               Text(
                                 "\$1250",
@@ -102,7 +121,7 @@ class _MyCartState extends State<MyCart> {
                             ],
                           ),
                           Row(
-                            children: const[
+                            children: const [
                               Text("Taxes"),
                               Text(
                                 "\$40",
@@ -130,10 +149,7 @@ class _MyCartState extends State<MyCart> {
                             ),
                             MaterialButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyCart()));
+                                Get.to(ShowProduct());
                               },
                               minWidth: 30,
                               height: 40,
@@ -158,7 +174,9 @@ class _MyCartState extends State<MyCart> {
                     ],
                   ),
                 ),
-              ))
+              ),
+            ),
+          ),
         ],
       ),
     );

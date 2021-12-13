@@ -39,6 +39,9 @@ class CommonDialog {
     Get.back();
   }
 
+  static showLoading(){
+
+  }
   static showErrorDialog(
       {String title = "Oops Error",
         String description = "Something went wrong"}) {

@@ -38,12 +38,27 @@ class AppButton extends StatelessWidget {
 
 
 class Textfeild_Widget extends StatelessWidget {
+
+
+
+
   Textfeild_Widget({
     required this.name,
+    required this.onChange,
+    required this.obscureTextBool,
+    this.textInputType,
+    this.controller,
+
+    required this.validator,
     Key? key,
   }) : super(key: key);
 
+  TextEditingController? controller;
   String name;
+  Function(String) onChange;
+  late TextInputType? textInputType;
+  bool obscureTextBool;
+  String? Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +68,14 @@ class Textfeild_Widget extends StatelessWidget {
           color: Colors.black12,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: TextField(
+        child: TextFormField(
+          controller: controller,
+          validator: validator,
+          obscureText: obscureTextBool,
+          onChanged: onChange,
+          keyboardType: textInputType,
+
           cursorColor: Colors.black38,
-          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             contentPadding:
             const EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
@@ -76,9 +96,15 @@ class Textfeild_Widget extends StatelessWidget {
 
 class Password_Widget extends StatefulWidget {
   Password_Widget({
+    required this.onChange,
+     this.validator,
     Key? key,
   }) : super(key: key);
 
+
+  Function(String) onChange;
+  late TextInputType? textInputType;
+  String? Function(String?)? validator;
   @override
   State<Password_Widget> createState() => _Password_WidgetState();
 }
@@ -93,14 +119,16 @@ class _Password_WidgetState extends State<Password_Widget> {
 
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
           color: Colors.black12,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: TextField(
-          cursorColor: Colors.black38,
+        child: TextFormField(
+          validator: widget.validator,
+          onChanged: widget.onChange,
           keyboardType: TextInputType.text,
+          cursorColor: Colors.black38,
           decoration: InputDecoration(
             contentPadding:
             const EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),

@@ -1,3 +1,6 @@
+import 'package:e_commerce_app/screens/bottomnavigationbar.dart';
+import 'package:e_commerce_app/screens/login_screen.dart';
+import 'package:e_commerce_app/screens/splash_screen.dart';
 import 'package:e_commerce_app/widgets/dialog_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,14 +31,16 @@ class AuthController extends GetxController {
 
             }
         );
+        print("Inside the signUp");
         CommonDialog.hideLoading();
         Get.back();
       } catch (e) {
+        print("inside the catch");
         CommonDialog.hideLoading();
         CommonDialog.showErrorDialog(description: "Error Saving data at FireStore $e");
       }
 
-      Get.back();
+      Get.to(LoginScreen());
     } on FirebaseAuthException catch (e) {
       CommonDialog.hideLoading();
       if (e.code == 'weak-password') {
@@ -61,7 +66,7 @@ class AuthController extends GetxController {
       print(userCredential.user!.uid);
       userId = userCredential.user!.uid;
       CommonDialog.hideLoading();
-      // Get.off(CategoriesPage());
+      Get.offAll( BottomNavigationScreen());
     } on FirebaseAuthException catch (e) {
       CommonDialog.hideLoading();
       if (e.code == 'user-not-found') {

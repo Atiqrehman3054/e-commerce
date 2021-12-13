@@ -1,29 +1,26 @@
 import 'package:e_commerce_app/constant.dart';
 import 'package:e_commerce_app/screens/detailscreen.dart';
-import 'package:e_commerce_app/widgets/dropdownbutton.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
-  GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var _ratingController;
+
+    String dropdownValue3 = '1 Month';
     return Scaffold(
-      key: _key,
-      drawer: Drawer(
-        child: Container(
-          color: Colors.green,
-        ),
-      ),
-      //appbar
+
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.grey[100],
         leading: IconButton(
           onPressed: () {
-            _key.currentState!.openDrawer();
+            // _key.currentState!.openDrawer();
           },
           icon: const Icon(
             Icons.menu,
@@ -46,7 +43,7 @@ class HomeScreen extends StatelessWidget {
 
       //body////////////////
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         color: Colors.grey[100],
         child: Column(
           children: [
@@ -67,10 +64,24 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 3,
-                  child: DropButton(
-                      item: const ["size", "date", "price"],
-                      hinttext: "sort by",
-                      ratingController: _ratingController),
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    underline: const Text(""),
+                    value: dropdownValue3,
+                    onChanged: (String? value) {
+                      setState(() {
+                        dropdownValue3 = value!;
+                      });
+                    },
+                    items: <String>['1 Month', '1 Week', '24 Hours']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    })
+                        .toList(),
+                  ),
                 ),
               ],
             ),
@@ -128,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                                     )),
                               ],
                             ),
-                    
+
                             //shoes image in builder
                             Expanded(
                               child: Column(
@@ -146,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                                   SizedBox(
                                     height: 20,
                                   ),
-                    
+
                                   //Two text widget
                                   Text(
                                     "Nike Air Max 20",
@@ -163,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
-                    
+
                                   //row for star icons
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

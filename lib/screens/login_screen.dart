@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Controller/auth_control.dart';
 import 'package:e_commerce_app/screens/sign_up.dart';
 import 'package:e_commerce_app/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +13,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   late bool _passwordVisible;
   bool _checkbox = false;
 
+  late String email , password;
+  AuthController authController = Get.put(AuthController());
+
+  login() {
+    authController.login(email, password);
+  }
 
 
+
+  @override
   void initState() {
     _passwordVisible = false;
   }
@@ -65,15 +75,34 @@ fixsize,
                     ),
                   ),
 
-                  Textfeild_Widget(name: "Email Address"),
+
+                  Textfeild_Widget(
+                    validator: (value){
+
+                    },
+                    onChange: (value) {
+                      email = value;
+                    },
+                    textInputType: TextInputType.emailAddress,
+                    obscureTextBool: false,
+                    name: "Email Address",
+                  ),
+
                   fixsize,
-                  fixsize,Password_Widget(),
+
+                  fixsize,Password_Widget(
+                    validator: (value){
+
+                    },
+
+                    onChange: (value) {
+                      password = value;
+                    },
+                  ),
 
                   fixsize,
                   fixsize,
-                  AppButton(name: "Login", onpressed: (){
-
-                  }),
+                  AppButton(name: "Login", onpressed: login),
 
 
                   const SizedBox(

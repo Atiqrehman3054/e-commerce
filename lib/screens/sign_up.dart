@@ -26,11 +26,12 @@ mixin InputValidationMixin {
 
 class _SignupScreenState extends State<SignupScreen> with InputValidationMixin{
 
-  late String email,password,username,phone;
-  AuthController authController = Get.find();
+  late String email,password,username;
+  AuthController authController = Get.put(AuthController());
   final formGlobalKey = GlobalKey<FormState>();
 
   signUp(){
+    print("calling the signUp");
     authController.signUp(email, password, username);
   }
 
@@ -47,18 +48,17 @@ class _SignupScreenState extends State<SignupScreen> with InputValidationMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPagebackgroundcolor,
-      body: ListView(
-        children: [
-          Stack(
-            children: [
-              Container(
-                transform: Matrix4.translationValues(0, -10, 0),
-                child: Image.asset("assets/images/background.png"),
-              ),
-              Container(
-                alignment: Alignment.center,
-                transform: Matrix4.translationValues(0, 125, 0),
-                child: Padding(
+      body: Form(
+        key: formGlobalKey,
+        child: ListView(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  transform: Matrix4.translationValues(0, -10, 0),
+                  child: Image.asset("assets/images/background.png"),
+                ),
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -101,68 +101,111 @@ class _SignupScreenState extends State<SignupScreen> with InputValidationMixin{
 
                       Textfeild_Widget(
                         name: "Name",
+                        validator: (name){
+                          if(name == ""){
+                            return 'Please Enter the Name';
+                          }
+                        },
+                        onChange: (value) {
+                          username = value;
+                        },
+                        textInputType: TextInputType.name,
+                        obscureTextBool: false,
                       ),
                       fixsize,
                       fixsize,
                       Textfeild_Widget(
-                        name: "Email Address",
+
+                        validator: (email){
+                          if(isEmailValid(email!)){
+                            return null;
+                          }else {
+                            return 'Enter a valid email';
+                          }
+                        },
+                        onChange: (value) {
+                          email = value;
+                        },
+                        textInputType: TextInputType.emailAddress,
+                        obscureTextBool: false,
+                        name: "Email",
                       ),
                       fixsize,
                       fixsize,
-                      Password_Widget(),
+                      Password_Widget(
+                        validator: (value){
+                          RegExp regex =
+                          RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                          if (value!.isEmpty) {
+                            return 'Please enter password';
+                          } else {
+                            if (!regex.hasMatch(value)) {
+                              return 'Enter valid password';
+                            } else {
+                              return null;
+                            }
+                          }
+                        },
+                        onChange: (value) {
+                          password = value;
+                        },
+                     ),
 
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 140,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    RichText(
-                      text: const TextSpan(
-                        text: 'Don\'t have an account?  ',
-                        style: TextStyle(
-                          color: kLightText,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Privace Policy',
-                            style: TextStyle(
-                                color: kBackgroundColor,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Checkbox(
-                      value: _checkbox,
-                      onChanged: (value) {
-                        setState(() {
-                          _checkbox = true;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                fixsize,
-                fixsize,
-                AppButton(name: "Get Started", onpressed: (){
-                  Get.to(LoginScreen());
-                }),
               ],
             ),
-          ),
 
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RichText(
+                        text: const TextSpan(
+                          text: 'Don\'t have an account?  ',
+                          style: TextStyle(
+                            color: kLightText,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Privace Policy',
+                              style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Checkbox(
+                        value: _checkbox,
+                        onChanged: (value) {
+                          setState(() {
+                            _checkbox = true;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  fixsize,
+                  fixsize,
+                  AppButton(name: "Get Started", onpressed: (){
+                    if(formGlobalKey.currentState!.validate()){
+                      signUp();
+
+                    }
+
+
+                  }),
+                ],
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }

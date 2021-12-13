@@ -1,7 +1,5 @@
-
-
-import 'package:e_commerce_app/screens/cart.dart';
 import 'package:e_commerce_app/constant.dart';
+import 'package:e_commerce_app/screens/cart.dart';
 import 'package:e_commerce_app/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -80,10 +78,11 @@ class _DetailScreenState extends State<DetailScreen> {
             Expanded(
               flex: 4,
               child: Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                  // border: Border.fromBorderSide(BorderSide.lerp(1, b, t)),
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30)),
                     color: Colors.grey[100]),
@@ -153,20 +152,20 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              height: 80,
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              height: 120,
               width: double.infinity,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
+              decoration:  BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30))),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
+                  const Text(
                     "\$269.00",
                     style: TextStyle(
                         color: Colors.black,
@@ -176,12 +175,12 @@ class _DetailScreenState extends State<DetailScreen> {
                   MaterialButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MyCart()));
+                          MaterialPageRoute(builder: (context) => MyCart(add: true,)));
                     },
                     minWidth: 30,
                     height: 40,
                     elevation: 0,
-                    color: Colors.grey[300],
+                    color: Colors.grey[400],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     child: Row(
