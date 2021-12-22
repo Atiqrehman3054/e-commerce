@@ -61,16 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       actions: [
         IconButton(
           onPressed: () async{
-            // List<dynamic> data = await dataController.NameUpdate("zeshanq","aticxcgfggfgcfccffcqrehman@gemil.com");
-            // title = data[0];
-            //
-            // email = data[1];
-            //
-            // setState(() {
-            //
-            //
-            // });
-
+          
             Get.to(UpdateScreen())?.then((value){
               UIUpdate();
 
